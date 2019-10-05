@@ -30,7 +30,7 @@ export class ServicesService {
   }
 
   deletaCliente(idcliente){
-    return this.http.delete(`http://127.0.0.1:5000/delete/${idcliente}`,{headers: this.header})
+    return this.http.delete(`http://tnt1.herokuapp.com/delete/${idcliente}`,{headers: this.header})
     .pipe(retry(this.retry_qty), catchError(this.handleError))
   }
 

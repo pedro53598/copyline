@@ -15,16 +15,15 @@ export class BuscaComponent implements OnInit {
 
   ngOnInit() {
 
-    
-
   }   
 
   buscaCli(cliente){
+    console.log(this.cliente)
     this.loading = true
     this.src.pesquisaCliente(cliente).subscribe(data => {
       this.dataCRM = data['RESULT'];
-      this.loading = false
       console.log(data);
+      this.loading = false
     })
   }
   

@@ -91,7 +91,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n    <a class=\"navbar-brand\" >Copyline</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarText\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/home']\" routerLinkActive=\"router-link-active\">Home  </a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" [routerLink]=\"['/sobre']\" routerLinkActive=\"router-link-active\" >Sobre</a>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" [routerLink]=\"['/cadastrocli']\" routerLinkActive=\"router-link-active\" >Cadastro Cliente</a>\n          </li>\n          <li class=\"nav-item\">\n            <a class=\"nav-link\" [routerLink]=\"['/buscacli']\" routerLinkActive=\"router-link-active\" >Busca Cliente</a>\n          </li>\n      </ul>\n    </div>\n  </nav>\n  <div class=\"col-md-12\">\n      <div class=\"col-md-4\">\n          <input type=\"text\" name=\"\" id=\"\" placeholder=\"Nome do cliente\" [(ngModel)]=\"cliente\">\n      </div>\n      <div class=\"col-md-4\">\n          <button (click)=\"buscaCli()\">Pesquisar</button>\n      </div>\n  </div>\n  <div class=\"lista col-md-12\">\n    <table class=\"table\">\n        <thead>\n            <tr>\n                <th scope=\"col\">ID</th>\n                <th scope=\"col\">Nome</th>\n                <th scope=\"col\">TELEFONE</th>\n                <th scope=\"col \">TELEFONE RETORNO</th>\n                <th scope=\"col \">CPF / CNPJ</th>\n                <th scope=\"col \">ENDERECO</th>\n                <th scope=\"col \">E-MAIL</th>\n                <th>EDITAR</th>\n                <th>EXCLUIR</th>\n            </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let usuario of dataCRM\"> \n              <td>{{usuario[0]}}</td>\n              <td>{{usuario[1]}}</td>\n              <td>{{usuario[2]}}</td>\n              <td>{{usuario[3]}}</td>\n              <td>{{usuario[4]}}</td>\n              <td>{{usuario[5]}}</td>\n              <td>{{usuario[6]}}</td>\n              <td></td>\n              <td></td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n\n \n  ";
+    __webpack_exports__["default"] = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n    <a class=\"navbar-brand\" >Copyline</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarText\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item active\">\n          <a class=\"nav-link\" [routerLink]=\"['/home']\" routerLinkActive=\"router-link-active\">Home  </a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" [routerLink]=\"['/sobre']\" routerLinkActive=\"router-link-active\" >Sobre</a>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" [routerLink]=\"['/cadastrocli']\" routerLinkActive=\"router-link-active\" >Cadastro Cliente</a>\n          </li>\n          <li class=\"nav-item\">\n            <a class=\"nav-link\" [routerLink]=\"['/buscacli']\" routerLinkActive=\"router-link-active\" >Busca Cliente</a>\n          </li>\n      </ul>\n    </div>\n  </nav>\n  <div class=\"col-md-12\">\n      <div class=\"col-md-4\">\n          <input type=\"text\" name=\"\" id=\"\" placeholder=\"Nome do cliente\" [(ngModel)]=\"cliente\">\n      </div>\n      <div class=\"col-md-4\">\n          <button (click)=\"buscaCli(cliente)\">Pesquisar</button>\n      </div>\n     \n  </div>\n \n  \n  <div class=\"lista col-md-12\">\n    <table class=\"table\">\n        <thead>\n            <tr>\n                <th scope=\"col\">ID</th>\n                <th scope=\"col\">Nome</th>\n                <th scope=\"col\">TELEFONE</th>\n                <th scope=\"col \">TELEFONE RETORNO</th>\n                <th scope=\"col \">CPF / CNPJ</th>\n                <th scope=\"col \">ENDERECO</th>\n                <th scope=\"col \">E-MAIL</th>\n                <th>EDITAR</th>\n                <th>EXCLUIR</th>\n            </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let usuario of dataCRM\"> \n              <td>{{usuario[0]}}</td>\n              <td>{{usuario[1]}}</td>\n              <td>{{usuario[2]}}</td>\n              <td>{{usuario[3]}}</td>\n              <td>{{usuario[4]}}</td>\n              <td>{{usuario[5]}}</td>\n              <td>{{usuario[6]}}</td>\n              <td>i </td>\n              <td><p (click)=\"deleteCliente(usuario[0])\"  style=\"cursor: pointer;font-size: 19px\"> x</p>\n                </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n\n    <div  *ngIf=\"loading\" style=\"height: 100%;width: 100%;z-index: 1000;position:fixed; text-align: center;top: 10px;;background-color: black;opacity:0.4;\">\n        <img src=\"../../../assets/loading-gear.gif\" alt=\"\" style=\" position:absolute;\n        left:50%;\n         \">\n    </div>\n\n \n  ";
     /***/
   },
 
@@ -1224,6 +1224,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.src = src;
         this.cliente = '';
+        this.loading = false;
       }
 
       _createClass(BuscaComponent, [{
@@ -1231,12 +1232,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {}
       }, {
         key: "buscaCli",
-        value: function buscaCli() {
+        value: function buscaCli(cliente) {
           var _this2 = this;
 
-          this.src.pesquisaCliente(this.cliente).subscribe(function (data) {
+          this.loading = true;
+          this.src.pesquisaCliente(cliente).subscribe(function (data) {
             _this2.dataCRM = data['RESULT'];
+            _this2.loading = false;
             console.log(data);
+          });
+        }
+      }, {
+        key: "deleteCliente",
+        value: function deleteCliente(id) {
+          var _this3 = this;
+
+          this.loading = true;
+          this.src.deletaCliente(id).subscribe(function (data) {
+            console.log(data);
+
+            if (data["SUCCESS"] == true) {
+              _this3.buscaCli(_this3.cliente);
+
+              console.log('deletado');
+              _this3.loading = false;
+            } else {
+              _this3.loading = false;
+            }
           });
         }
       }]);
@@ -1490,14 +1512,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(HomeComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {
-          var _this3 = this;
-
-          this.service.getDataAgenda().subscribe(function (data) {
-            _this3.dataCRM = data['RESULT'];
-            console.log(data);
-          });
-        }
+        value: function ngOnInit() {}
       }]);
 
       return HomeComponent;
@@ -1693,13 +1708,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       _createClass(ServicesService, [{
-        key: "getDataAgenda",
-        value: function getDataAgenda() {
-          return this.http.get("http://tnt1.herokuapp.com/showall", {
-            headers: this.header
-          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["retry"])(this.retry_qty), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
-        }
-      }, {
         key: "pesquisaCliente",
         value: function pesquisaCliente(codcli) {
           return this.http.get("http://tnt1.herokuapp.com/busca/".concat(codcli), {
@@ -1710,6 +1718,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "criaCliente",
         value: function criaCliente(nome, telretorno, tel, cpfcpnj, endereco, email) {
           return this.http.post("http://tnt1.herokuapp.com/criacli/".concat(nome, "/").concat(telretorno, "/").concat(tel, "/").concat(cpfcpnj, "/").concat(endereco, "/").concat(email), {
+            headers: this.header
+          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["retry"])(this.retry_qty), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
+        }
+      }, {
+        key: "deletaCliente",
+        value: function deletaCliente(idcliente) {
+          return this.http.delete("http://tnt1.herokuapp.com/delete/".concat(idcliente), {
             headers: this.header
           }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["retry"])(this.retry_qty), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
         }
