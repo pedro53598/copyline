@@ -1,0 +1,37 @@
+<div class="container">
+        <div class="row">
+                <form class="alinha-form">
+                    <img src="../../favicon.ico" style="width: 100px; margin-left: 100px;"> <br><br>
+                     <!--USUARIO-->
+                        <div class="form-group">
+                          <label for="usuario" class="textInput">Nome de Usuario:</label>
+                          
+              <input id="email" class="web form-control" type="text" placeholder="Digite seu email" name="web" [(ngModel)]="email">  
+                        </div>
+                    <!--/USUARIO-->
+
+                     <!--SENHA-->
+                        <div class="form-group">
+                          <label for="senha" class="textInput">Senha:</label>
+                          <input id="password" class="Password form-control" type="password" placeholder="Digite sua senha"
+                             name="Password" [(ngModel)]="senha">
+                        </div>
+                    <!--/SENHA-->
+                       
+                    <!--BOTÃO LOGAR-->
+                        <div class="form-group">
+                            <a class="btn btn-info textInput" (click)="validaUser()" role="button">Logar</a>
+                        </div>
+                        <div>
+                               <p style='font-size: 15px; color: red' >{{wrong}}</p>
+                        </div>
+
+                    <!--/BOTÃO LOGAR-->
+                       
+                    <!--BOTÃO CADASTRAR-->
+                        
+                    <!--/BOTÃO CADASTRAR-->
+                        
+                </form>
+        </div>
+    </div>

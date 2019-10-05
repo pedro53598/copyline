@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" >Copyline</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+              <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Home  </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/sobre']" routerLinkActive="router-link-active" >Sobre</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" [routerLink]="['/cadastrocli']" routerLinkActive="router-link-active" >Cadastro Cliente</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container">
+            <div class="row mb-3">
+              <div class="col-md-4">
+               
+              </div>
+              <div class="col-md-4">
+                <h3>INFORMAÇÕES</h3>
+              </div>
+          
+          
+              <div class="col-md-4">
+                <h3></h3>
+              </div>
+            </div>
+          
+            <div class="row mb-3">
+              <div class="col-sm-4 col-md-4 ">
+                <p>NOME  /  EMPRESA</p>
+                <input type="text" class="select" >
+              </div>
+              <div class="col-sm-4 col-md-4">
+                <p>CPF  /  CNPJ </p>
+                <input type="text" class="select" >
+              </div>
+              <div class="col-sm-4 col-md-4">
+                <p>EMAIL DO CLIENTE </p>
+                <input type="email"  class="select" >
+              </div>
+            </div>
+          
+            <div class="row mb-3">
+             
+              <div class="col-sm-4 col-md-4">
+                <p>TELEFONE </p>
+                <input type="text" class="select"  mask="(00) 00000-0000">
+              </div>
+              <div class="col-sm-4 col-md-4 ">
+                    <p>ENDERECO</p>
+                    <input type="text"   class="select" >
+                  </div>
+                  <div class="col-sm-4 col-md-4 ">
+                        <p>TEL RETORNO</p>
+                        <input type="text" placeholder="(99) 99999-9999" class="select"  mask="(00) 00000-0000">
+                      </div>
+            </div>
+          
+             
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+
+                <div class="col-md-4">
+                    <button style="float:right" class="buttonSend" >Enviar</button>
+                </div>
+            </div>
+            
+            
