@@ -22,6 +22,17 @@ export class ServicesService {
       .pipe(retry(this.retry_qty), catchError(this.handleError))
   }
 
+  pesquisaCliente(codcli){
+    return this.http.get(`http://127.0.0.1:5000/busca/${codcli}`, {headers: this.header})
+    .pipe(retry(this.retry_qty), catchError(this.handleError))
+  }
+
+  criaCliente(nome ,telretorno ,tel ,cpfcpnj ,endereco ,email){
+    return this.http.post(`http://127.0.0.1:5000/criacli/${nome}/${telretorno}/${tel}/${cpfcpnj}/${endereco}/${email}`,{headers: this.header})
+    .pipe(retry(this.retry_qty), catchError(this.handleError))
+  }
+
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
