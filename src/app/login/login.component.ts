@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
   }
 
   validaUser(){
+    
+   
     if(this.email != "admin" && this.senha != 'admin' ){
     this.wrong = 'Email ou senha incorreto'
     }

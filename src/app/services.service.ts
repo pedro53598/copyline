@@ -17,20 +17,23 @@ export class ServicesService {
 
   constructor(private http: HttpClient) { }
    
-  getDataAgenda() {
-    return this.http.get(`http://127.0.0.1:5000/showall`, { headers: this.header })
-      .pipe(retry(this.retry_qty), catchError(this.handleError))
-  }
+ 
 
   pesquisaCliente(codcli){
-    return this.http.get(`http://127.0.0.1:5000/busca/${codcli}`, {headers: this.header})
+    return this.http.get(`http://tnt1.herokuapp.com/busca/${codcli}`, {headers: this.header})
     .pipe(retry(this.retry_qty), catchError(this.handleError))
   }
 
   criaCliente(nome ,telretorno ,tel ,cpfcpnj ,endereco ,email){
-    return this.http.post(`http://127.0.0.1:5000/criacli/${nome}/${telretorno}/${tel}/${cpfcpnj}/${endereco}/${email}`,{headers: this.header})
+    return this.http.post(`http://tnt1.herokuapp.com/criacli/${nome}/${telretorno}/${tel}/${cpfcpnj}/${endereco}/${email}`,{headers: this.header})
     .pipe(retry(this.retry_qty), catchError(this.handleError))
   }
+
+  deletaCliente(idcliente){
+    return this.http.delete(`http://127.0.0.1:5000/delete/${idcliente}`,{headers: this.header})
+    .pipe(retry(this.retry_qty), catchError(this.handleError))
+  }
+
 
 
   private handleError<T> (operation = 'operation', result?: T) {

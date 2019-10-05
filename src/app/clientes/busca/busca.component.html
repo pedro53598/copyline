@@ -25,9 +25,12 @@
           <input type="text" name="" id="" placeholder="Nome do cliente" [(ngModel)]="cliente">
       </div>
       <div class="col-md-4">
-          <button (click)="buscaCli()">Pesquisar</button>
+          <button (click)="buscaCli(cliente)">Pesquisar</button>
       </div>
+     
   </div>
+ 
+  
   <div class="lista col-md-12">
     <table class="table">
         <thead>
@@ -52,11 +55,18 @@
               <td>{{usuario[4]}}</td>
               <td>{{usuario[5]}}</td>
               <td>{{usuario[6]}}</td>
-              <td></td>
-              <td></td>
+              <td>i </td>
+              <td><p (click)="deleteCliente(usuario[0])"  style="cursor: pointer;font-size: 19px"> x</p>
+                </td>
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div  *ngIf="loading" style="height: 100%;width: 100%;z-index: 1000;position:fixed; text-align: center;top: 10px;;background-color: black;opacity:0.4;">
+        <img src="../../../assets/loading-gear.gif" alt="" style=" position:absolute;
+        left:50%;
+         ">
     </div>
 
  

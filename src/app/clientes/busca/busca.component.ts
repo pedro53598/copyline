@@ -7,20 +7,42 @@ import {ServicesService} from '../../services.service';
 })
 export class BuscaComponent implements OnInit {
 
-  cliente = 'he';
+  cliente = '';
   dataCRM: any[];
+  loading= false;
   constructor(private src: ServicesService) { }
 
 
   ngOnInit() {
-  }
 
-  buscaCli(){
-    this.src.pesquisaCliente(this.cliente).subscribe(data => {
+    
+
+  }   
+
+  buscaCli(cliente){
+    this.loading = true
+    this.src.pesquisaCliente(cliente).subscribe(data => {
       this.dataCRM = data['RESULT'];
+      this.loading = false
       console.log(data);
     })
   }
-
+  
+  deleteCliente(id){
+    this.loading  = true
+    this.src.deletaCliente(id).subscribe(data =>{
+      console.log(data)
+      if(data["SUCCESS"] == true){
+        
+        this.buscaCli(this.cliente)
+        console.log('deletado');
+        this.loading = false;
+      }
+      else{
+        this.loading = false;
+      }
+    })
+   
+  }
 
 }
